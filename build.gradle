@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.2.3'
+        classpath 'com.android.tools.build:gradle:1.5.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -16,4 +16,36 @@ allprojects {
     repositories {
         jcenter()
     }
+}
+
+// Tasks to automate testing
+task runAppEngine(dependsOn: ":backend:appengineRun") {
+    project(":backend").afterEvaluate { backend ->
+        backend.extensions.appengine.daemon = true
+    }
+    doLast {
+        println "Started the server!"
+    }
+}
+
+task runAllTests {
+    dependsOn ':app:test', ':app:connectedAndroidTest'
+    mustRunAfter runAppEngine
+
+    doLast {
+        println "Tests started"
+    }
+}
+
+task stopAppEngine {
+    dependsOn ':backend:appengineStop'
+    mustRunAfter runAllTests
+
+    doLast {
+        println "App Engine stopped"
+    }
+}
+
+task launchEndpointAndTest {
+    dependsOn runAppEngine, runAllTests, stopAppEngine
 }

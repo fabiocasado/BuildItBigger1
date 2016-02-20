@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ComedyCentral</string>
+    <string name="test_joke">This is a sample xml joke</string>
+    <string name="error_joke">Error finding joke. Please try again.</string>
 </resources>
