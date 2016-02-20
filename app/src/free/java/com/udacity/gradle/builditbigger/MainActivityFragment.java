@@ -1,7 +1,7 @@
 package com.udacity.gradle.builditbigger;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +15,7 @@ import com.google.android.gms.ads.InterstitialAd;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment implements IAdsFragment {
     private InterstitialAd mInterstitialAd;
 
     public MainActivityFragment() {
@@ -54,10 +54,13 @@ public class MainActivityFragment extends Fragment {
         mInterstitialAd.loadAd(adRequest);
     }
 
+
+    @Override
     public boolean shouldShowIntersitialAd() {
         return mInterstitialAd.isLoaded();
     }
 
+    @Override
     public void showIntersitialAd(final String joke) {
         mInterstitialAd.setAdListener(new AdListener() {
             @Override

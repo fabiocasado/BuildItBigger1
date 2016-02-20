@@ -14,7 +14,7 @@ import com.example.haazzz.comedycentral.JokeActivity;
 
 public class MainActivity extends ActionBarActivity {
     private ProgressBar mProgressBar;
-    private MainActivityFragment mAdsFragment;
+    private IAdsFragment mAdsFragment;
 
 
     @Override
@@ -22,34 +22,11 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAdsFragment = (MainActivityFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
+        mAdsFragment = (IAdsFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
 
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mProgressBar.setIndeterminate(true);
         mProgressBar.setVisibility(View.GONE);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void tellJoke(View view) {

@@ -6,14 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
-
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment implements IAdsFragment{
 
     public MainActivityFragment() {
     }
@@ -24,5 +20,16 @@ public class MainActivityFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
 
         return root;
+    }
+
+
+    @Override
+    public boolean shouldShowIntersitialAd() {
+        return false;
+    }
+
+    @Override
+    public void showIntersitialAd(String joke) {
+        // No ad for paid version
     }
 }
